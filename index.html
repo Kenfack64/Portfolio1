@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f5f1e8">
+<meta name="description" content="Portfolio de Kenfack Tiofack Job — Créateur digital entre marketing, code et design.">
+<title>Kenfack Tiofack Job — Portfolio Créatif</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+    /* Palette douce et lisible */
+    --bg: #f5f1e8;           /* crème papier */
+    --bg-2: #ebe4d6;          /* sable clair */
+    --surface: #fbf8f2;       /* cartes */
+    --surface-2: #f0ead9;
+
+    --ink: #2a2620;           /* encre douce, PAS noir pur */
+    --ink-soft: #4a4438;      /* texte secondaire */
+    --ink-muted: #7a7266;     /* texte tertiaire */
+    --line: #d9d0bd;          /* séparateurs */
+    --line-soft: #e6dfd0;
+
+    /* Accents chauds et reposants */
+    --terracotta: #c4653f;    /* accent principal chaud */
+    --terracotta-soft: #e8a488;
+    --sage: #6b8e6b;          /* vert sauge apaisant */
+    --sage-soft: #a8bfa3;
+    --ochre: #c9963f;         /* touches dorées */
+    --plum: #7a4b6b;          /* violet doux */
+
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
+
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --shadow-sm: 0 2px 8px rgba(42, 38, 32, 0.04);
+    --shadow-md: 0 8px 24px rgba(42, 38, 32, 0.06);
+    --shadow-lg: 0 20px 50px -10px rgba(42, 38, 32, 0.12);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 16px;
+    overflow-x: hidden;
+}
+
+/* Texture papier subtile */
+body::before {
+    content: '';
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(196, 101, 63, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(107, 142, 107, 0.04) 0%, transparent 40%);
+}
+
+::selection { background: var(--terracotta-soft); color: var(--ink); }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+img { max-width: 100%; display: block; }
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-2); }
+::-webkit-scrollbar-thumb { background: var(--line); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-muted); }
+
+.container { width: min(1180px, 92%); margin: 0 auto; position: relative; z-index: 1; }
+.section { padding: 120px 0; position: relative; }
+
+/* ============ TYPOGRAPHIE ============ */
+.serif { font-family: 'Fraunces', serif; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+
+.eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 24px;
+    font-weight: 500;
+}
+.eyebrow::before {
+    content: ''; width: 24px; height: 1px;
+    background: var(--terracotta);
+}
+
+.section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 20px;
+}
+.section-title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--terracotta);
+}
+.section-lead {
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+    max-width: 620px;
+    line-height: 1.7;
+}
+
+/* ============ NAV ============ */
+.nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 0;
+    background: rgba(245, 241, 232, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid transparent;
+    transition: all 0.4s var(--ease);
+}
+.nav.scrolled {
+    padding: 14px 0;
+    border-bottom-color: var(--line);
+    box-shadow: var(--shadow-sm);
+}
+.nav-inner {
+    display: flex; align-items: center;
+    justify-content: space-between;
+}
+.logo {
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    display: flex; align-items: center; gap: 10px;
+}
+.logo::before {
+    content: '';
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    box-shadow: 0 0 0 4px rgba(196, 101, 63, 0.15);
+}
+.nav-links {
+    display: flex; gap: 8px;
+    align-items: center;
+    font-size: 0.92rem;
+    font-weight: 500;
+}
+.nav-links a {
+    padding: 8px 16px;
+    border-radius: 100px;
+    color: var(--ink-soft);
+    transition: all 0.3s var(--ease);
+}
+.nav-links a:hover {
+    color: var(--ink);
+    background: var(--surface-2);
+}
+.nav-cta {
+    padding: 10px 20px !important;
+    background: var(--ink);
+    color: var(--bg) !important;
+    border-radius: 100px;
+    font-weight: 600;
+    display: inline-flex; align-items: center; gap: 6px;
+}
+.nav-cta:hover {
+    background: var(--terracotta) !important;
+    transform: translateY(-1px);
+}
+.menu-toggle {
+    display: none;
+    font-size: 1.4rem;
+    color: var(--ink);
+    padding: 8px;
+}
+
+/* ============ HERO ============ */
+.hero {
+    padding: 180px 0 100px;
+    position: relative;
+}
+.hero-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 32px;
+    margin-bottom: 48px;
+    border-bottom: 1px solid var(--line);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    flex-wrap: wrap;
+    gap: 16px;
+}
+.hero-meta .status {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 6px 14px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    background: var(--surface);
+}
+.hero-meta .status::before {
+    content: '';
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--sage);
+    box-shadow: 0 0 0 3px rgba(107, 142, 107, 0.2);
+    animation: pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.15); }
+}
+
+.hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.8rem, 8vw, 7rem);
+    font-weight: 600;
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+    margin-bottom: 40px;
+    max-width: 1000px;
+}
+.hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--terracotta);
+    position: relative;
+}
+.hero h1 em::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    bottom: 8%;
+    height: 12px;
+    background: var(--terracotta-soft);
+    opacity: 0.35;
+    z-index: -1;
+    border-radius: 6px;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 60px;
+    align-items: end;
+    padding-top: 20px;
+}
+.hero-desc {
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    max-width: 520px;
+}
+.hero-desc strong {
+    color: var(--ink);
+    font-weight: 600;
+    background: linear-gradient(transparent 60%, var(--terracotta-soft) 60%);
+    padding: 0 2px;
+}
+.hero-actions {
+    display: flex; gap: 12px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+/* ============ BOUTONS ============ */
+.btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 15px 26px;
+    border-radius: 100px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.35s var(--ease);
+    border: 1px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.btn .arrow {
+    display: inline-block;
+    transition: transform 0.35s var(--ease);
+}
+.btn:hover .arrow { transform: translate(3px, -3px); }
+
+.btn-primary {
+    background: var(--ink);
+    color: var(--bg);
+    box-shadow: var(--shadow-sm);
+}
+.btn-primary:hover {
+    background: var(--terracotta);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px -8px rgba(196, 101, 63, 0.4);
+}
+
+.btn-outline {
+    background: transparent;
+    border-color: var(--ink);
+    color: var(--ink);
+}
+.btn-outline:hover {
+    background: var(--ink);
+    color: var(--bg);
+    transform: translateY(-2px);
+}
+
+.btn-soft {
+    background: var(--surface);
+    border-color: var(--line);
+    color: var(--ink);
+}
+.btn-soft:hover {
+    background: var(--surface-2);
+    border-color: var(--ink-muted);
+    transform: translateY(-2px);
+}
+
+/* ============ SECTION PROFIL ============ */
+.profil-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: start;
+}
+
+.profile-frame {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    aspect-ratio: 4/5;
+    background: var(--surface-2);
+}
+.profile-frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255,255,255,0.5);
+    pointer-events: none;
+}
+.profile-frame img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    transition: transform 0.8s var(--ease);
+}
+.profile-frame:hover img { transform: scale(1.03); }
+
+.photo-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    background: linear-gradient(135deg, var(--surface-2), var(--bg-2));
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 4rem;
+    color: var(--ink-muted);
+    opacity: 0.4;
+}
+.photo-placeholder span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 12px;
+    color: var(--ink-muted);
+}
+
+.profile-caption {
+    margin-top: 24px;
+    padding-left: 20px;
+    border-left: 2px solid var(--terracotta);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    letter-spacing: 0.05em;
+}
+.profile-caption strong {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-size: 1rem;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.about-text p {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+    line-height: 1.75;
+}
+
+.quote-block {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 32px;
+    margin: 32px 0;
+    position: relative;
+}
+.quote-block::before {
+    content: '"';
+    font-family: 'Fraunces', serif;
+    position: absolute;
+    top: -10px; left: 20px;
+    font-size: 4rem;
+    line-height: 1;
+    color: var(--terracotta);
+    background: var(--surface);
+    padding: 0 8px;
+}
+.quote-block p {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    line-height: 1.5;
+    color: var(--ink);
+    margin: 0;
+}
+
+.chips {
+    display: flex; flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 28px;
+}
+.chip {
+    padding: 8px 16px;
+    border-radius: 100px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    transition: all 0.3s var(--ease);
+}
+.chip:hover {
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+    transform: translateY(-2px);
+}
+
+/* ============ EXPERTISE ============ */
+.expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-top: 60px;
+}
+.skill-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 36px 30px;
+    transition: all 0.4s var(--ease);
+    position: relative;
+    overflow: hidden;
+}
+.skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--terracotta);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s var(--ease);
+}
+.skill-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--terracotta-soft);
+}
+.skill-card:hover::before { transform: scaleX(1); }
+.skill-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--terracotta);
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+    display: block;
+}
+.skill-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+    color: var(--ink);
+}
+.skill-card p {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+}
+
+/* ============ PROJETS ============ */
+.projects-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 60px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--line);
+}
+.projects-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+}
+
+.projects-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+}
+.project-row {
+    display: grid;
+    grid-template-columns: 60px 1.2fr 1fr auto;
+    gap: 40px;
+    align-items: center;
+    padding: 36px 24px;
+    border-bottom: 1px solid var(--line);
+    transition: all 0.4s var(--ease);
+    position: relative;
+    cursor: pointer;
+}
+.project-row::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--surface);
+    opacity: 0;
+    transition: opacity 0.4s var(--ease);
+    z-index: -1;
+    border-radius: var(--radius-md);
+}
+.project-row:hover::before { opacity: 1; }
+.project-row:hover {
+    padding-left: 32px;
+    padding-right: 32px;
+}
+.project-row:hover .project-arrow {
+    transform: translate(6px, -6px);
+    background: var(--terracotta);
+    color: var(--bg);
+    border-color: var(--terracotta);
+}
+.project-row:hover .project-title {
+    color: var(--terracotta);
+}
+
+.project-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+    letter-spacing: 0.05em;
+}
+.project-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.project-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sage);
+    font-weight: 500;
+}
+.project-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    transition: color 0.3s var(--ease);
+}
+.project-desc {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    max-width: 380px;
+}
+.project-arrow {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    border: 1.5px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: var(--ink);
+    transition: all 0.4s var(--ease);
+    flex-shrink: 0;
+    background: var(--surface);
+}
+
+/* Ligne entière cliquable */
+.project-row a.row-link {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: var(--radius-md);
+}
+
+/* ============ PARCOURS ============ */
+.timeline {
+    margin-top: 60px;
+    position: relative;
+    padding-left: 40px;
+}
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--terracotta), var(--sage), transparent);
+    border-radius: 2px;
+}
+.timeline-item {
+    position: relative;
+    padding-bottom: 48px;
+}
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -40px;
+    top: 6px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--terracotta);
+    box-shadow: 0 0 0 4px var(--bg);
+    transition: all 0.3s var(--ease);
+    z-index: 2;
+}
+.timeline-item:hover::before {
+    background: var(--terracotta);
+    transform: scale(1.2);
+}
+.timeline-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+.timeline-item h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 6px;
+    line-height: 1.3;
+}
+.timeline-item p {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    max-width: 640px;
+}
+
+/* ============ CTA FINAL ============ */
+.cta-section { padding-bottom: 120px; }
+.cta-box {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-xl);
+    padding: 80px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+.cta-box::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(196, 101, 63, 0.08), transparent 70%);
+    pointer-events: none;
+}
+.cta-box::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(107, 142, 107, 0.08), transparent 70%);
+    pointer-events: none;
+}
+.cta-box > * { position: relative; z-index: 1; }
+.cta-box .section-title { margin-bottom: 20px; }
+.cta-box > p {
+    max-width: 560px;
+    margin: 0 auto 36px;
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+}
+.cta-box .hero-actions { justify-content: center; }
+
+/* ============ FOOTER ============ */
+footer {
+    padding: 40px 0;
+    border-top: 1px solid var(--line);
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+}
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.03em;
+}
+.footer-inner .sep {
+    display: inline-block;
+    margin: 0 8px;
+    color: var(--line);
+}
+
+/* ============ REVEAL ============ */
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+}
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.reveal-d1 { transition-delay: 0.08s; }
+.reveal-d2 { transition-delay: 0.16s; }
+.reveal-d3 { transition-delay: 0.24s; }
+.reveal-d4 { transition-delay: 0.32s; }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero-actions { justify-content: flex-start; }
+    .profil-grid { grid-template-columns: 1fr; gap: 60px; }
+    .profile-frame { max-width: 400px; margin: 0 auto; }
+}
+
+@media (max-width: 768px) {
+    .nav { padding: 14px 0; }
+    .nav.scrolled { padding: 10px 0; }
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%; left: 4%; right: 4%;
+        margin-top: 8px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        padding: 16px;
+        flex-direction: column;
+        gap: 4px;
+        box-shadow: var(--shadow-lg);
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a {
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+    }
+    .menu-toggle { display: block; }
+
+    .hero { padding: 140px 0 60px; }
+    .section { padding: 80px 0; }
+
+    .project-row {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 28px 0;
+    }
+    .project-row::before { display: none; }
+    .project-row:hover {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .project-row:hover .project-arrow {
+        transform: translate(0, 0);
+        background: var(--terracotta);
+        color: var(--bg);
+        border-color: var(--terracotta);
+    }
+    .project-num {
+        font-size: 0.8rem;
+    }
+    .project-arrow {
+        width: 44px; height: 44px;
+        align-self: flex-start;
+    }
+
+    .cta-box { padding: 50px 24px; border-radius: var(--radius-lg); }
+
+    .footer-inner { flex-direction: column; text-align: center; }
+
+    .timeline { padding-left: 32px; }
+    .timeline-item::before { left: -32px; }
+}
+
+@media (max-width: 480px) {
+    .hero h1 { font-size: 2.4rem; }
+    .hero-meta { font-size: 0.7rem; gap: 12px; }
+    .hero-actions { flex-direction: column; }
+    .hero-actions .btn { width: 100%; justify-content: center; }
+    .skill-card { padding: 28px 24px; }
+    .quote-block { padding: 28px 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+    <div class="container nav-inner">
+        <a href="#top" class="logo">K. Tiofack</a>
+        <nav class="nav-links" id="navLinks" aria-label="Navigation principale">
+            <a href="#profil">Profil</a>
+            <a href="#expertise">Expertise</a>
+            <a href="#projets">Projets</a>
+            <a href="#parcours">Parcours</a>
+            <a href="#contact" class="nav-cta">Me contacter ↗</a>
+        </nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu">☰</button>
+    </div>
+</header>
+
+<main id="top">
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-meta">
+                <span class="status">Disponible pour de nouveaux projets</span>
+                <span>Portfolio — Édition 2026</span>
+                <span>Paris, France</span>
+            </div>
+
+            <h1>
+                Je transforme les idées en <em>expériences digitales</em> mémorables.
+            </h1>
+
+            <div class="hero-grid">
+                <p class="hero-desc">
+                    Je suis <strong>Kenfack Tiofack Job</strong>, créateur digital entre marketing,
+                    code et design. J'imagine des projets utiles, modernes et pensés pour marquer
+                    les esprits — de la stratégie à la réalisation.
+                </p>
+                <div class="hero-actions">
+                    <a href="#projets" class="btn btn-primary">
+                        Explorer mes projets <span class="arrow">↗</span>
+                    </a>
+                    <a href="#contact" class="btn btn-outline">
+                        Démarrer une collaboration
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROFIL -->
+    <section class="section" id="profil">
+        <div class="container">
+            <div class="profil-grid">
+                <div class="reveal">
+                    <div class="profile-frame">
+                        <img
+                            src="IDcard.png"
+                            alt="Portrait de Kenfack Tiofack Job"
+                            loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                        >
+                        <div class="photo-placeholder" style="display:none;">
+                            KTJ
+                            <span>Photo introuvable</span>
+                        </div>
+                    </div>
+                    <div class="profile-caption">
+                        <strong>Kenfack Tiofack Job</strong>
+                        Informaticien & Marketeur — Paris, FR
+                    </div>
+                </div>
+
+                <div class="about-text reveal reveal-d1">
+                    <span class="eyebrow">Qui suis-je</span>
+                    <h2 class="section-title">Un profil <em>hybride</em>, à la croisée du digital.</h2>
+
+                    <p>
+                        Étudiant en MSc1 Marketing Digital & E-commerce à l'INSEEC Paris,
+                        récemment diplômé d'une Licence Professionnelle en Génie Logiciel à
+                        l'IUT de Douala. J'ai construit un parcours polyvalent : développement
+                        web front-end, WordPress, stratégie marketing et création visuelle.
+                    </p>
+
+                    <div class="quote-block">
+                        <p>Je ne veux pas seulement utiliser les outils du digital. Je veux comprendre pourquoi ils fonctionnent — et comment les utiliser pour créer de la valeur.</p>
+                    </div>
+
+                    <p>
+                        Mon objectif : combiner créativité, technique et sens business
+                        pour concevoir des expériences digitales cohérentes, utiles et
+                        mémorables.
+                    </p>
+
+                    <div class="chips">
+                        <span class="chip">Marketing digital</span>
+                        <span class="chip">Développement web</span>
+                        <span class="chip">Création graphique</span>
+                        <span class="chip">WordPress</span>
+                        <span class="chip">HTML / CSS</span>
+                        <span class="chip">JavaScript</span>
+                        <span class="chip">Bootstrap</span>
+                        <span class="chip">PHP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERTISE -->
+    <section class="section" id="expertise" style="background: var(--bg-2);">
+        <div class="container">
+            <span class="eyebrow reveal">Ce que je sais faire</span>
+            <h2 class="section-title reveal">Une expertise <em>à 360°</em>.</h2>
+            <p class="section-lead reveal">
+                Je combine créativité, technique et sens business pour construire
+                des solutions digitales cohérentes — de la stratégie à la réalisation.
+            </p>
+
+            <div class="expertise-grid">
+                <article class="skill-card reveal">
+                    <span class="skill-num">— 01</span>
+                    <h3>Marketing digital</h3>
+                    <p>Réseaux sociaux, visibilité, contenu, acquisition et communication de marque.</p>
+                </article>
+                <article class="skill-card reveal reveal-d1">
+                    <span class="skill-num">— 02</span>
+                    <h3>Développement web</h3>
+                    <p>Interfaces responsives, intégration front-end et bases solides du back-end.</p>
+                </article>
+                <article class="skill-card reveal reveal-d2">
+                    <span class="skill-num">— 03</span>
+                    <h3>Design & création</h3>
+                    <p>Flyers, affiches, logos et contenus visuels pensés pour attirer l'attention.</p>
+                </article>
+                <article class="skill-card reveal reveal-d3">
+                    <span class="skill-num">— 04</span>
+                    <h3>WordPress</h3>
+                    <p>Mise en place, personnalisation et accompagnement de projets web.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJETS -->
+    <section class="section" id="projets">
+        <div class="container">
+            <div class="projects-header reveal">
+                <div>
+                    <span class="eyebrow">Réalisations</span>
+                    <h2 class="section-title" style="margin-bottom: 0;">Mes projets <em>récents</em>.</h2>
+                </div>
+                <span class="projects-count">06 projets — 2024 / 2026</span>
+            </div>
+
+            <div class="projects-list">
+
+                <!-- 01 -->
+                <article class="project-row reveal">
+                    <span class="project-num">01</span>
+                    <div class="project-info">
+                        <span class="project-tag">Web · Digitalisation</span>
+                        <h3 class="project-title">Digital Switch CM — Cahier de charge</h3>
+                    </div>
+                    <p class="project-desc">Vision d'un système d'automatisation complet des PME au Cameroun, puis dans toute l'Afrique.</p>
+                    <a href="https://kenfack64.github.io/Life-Project/" target="_blank" rel="noopener noreferrer" class="row-link" aria-label="Voir le projet Digital Switch CM"></a>
+                    <div class="project-arrow">↗</div>
+                </article>
+
+                <!-- 02 -->
+                <article class="project-row reveal">
+                    <span class="project-num">02</span>
+                    <div class="project-info">
+                        <span class="project-tag">Marketing</span>
+                        <h3 class="project-title">Église & Programme Ambassadeur</h3>
+                    </div>
+                    <p class="project-desc">Stratégie marketing 360° pour le lancement d'un programme d'ambassadeur.</p>
+                    <a href="https://kenfack64.github.io/power/" target="_blank" rel="noopener noreferrer" class="row-link" aria-label="Voir le projet Power"></a>
+                    <div class="project-arrow">↗</div>
+                </article>
+
+                <!-- 03 -->
+                <article class="project-row reveal">
+                    <span class="project-num">03</span>
+                    <div class="project-info">
+                        <span class="project-tag">Design</span>
+                        <h3 class="project-title">Identité Boutique Cosmétique</h3>
+                    </div>
+                    <p class="project-desc">Présentation complète d'une boutique cosmétique moderne — direction artistique et visuels.</p>
+                    <a href="https://kenfack64.github.io/produit/" target="_blank" rel="noopener noreferrer" class="row-link" aria-label="Voir le projet Produit"></a>
+                    <div class="project-arrow">↗</div>
+                </article>
+
+                <!-- 04 -->
+                <article class="project-row reveal">
+                    <span class="project-num">04</span>
+                    <div class="project-info">
+                        <span class="project-tag">Web</span>
+                        <h3 class="project-title">Site Digital Switch CMR</h3>
+                    </div>
+                    <p class="project-desc">Conception d'un site vitrine pour une entreprise de transformation digitale en Afrique.</p>
+                    <a href="https://digital-switch.vercel.app/" target="_blank" rel="noopener noreferrer" class="row-link" aria-label="Voir Digital Switch"></a>
+                    <div class="project-arrow">↗</div>
+                </article>
+
+                <!-- 05 -->
+                <article class="project-row reveal">
+                    <span class="project-num">05</span>
+                    <div class="project-info">
+                        <span class="project-tag">Front-end</span>
+                        <h3 class="project-title">Site Musical — Zamazu</h3>
+                    </div>
+                    <p class="project-desc">Développement d'une vitrine web immersive pour un artiste musical.</p>
+                    <a href="https://Zamazu-frontend.vercel.app/" target="_blank" rel="noopener noreferrer" class="row-link" aria-label="Voir Zamazu Frontend"></a>
+                    <div class="project-arrow">↗</div>
+                </article>
+
+                <!-- 06 -->
+                <article class="project-row reveal">
+                    <span class="project-num">06</span>
+                    <div class="project-info">
+                        <span class="project-tag">Création</span>
+                        <h3 class="project-title">Anniversaire — Noémie</h3>
+                    </div>
+                    <p class="project-desc">Site vitrine événementiel élégant, personnalisé et entièrement responsive.</p>
+                    <a href="https://kenfack64.github.io/NOEMIE/" target="_blank" rel="noopener noreferrer" class="row-link" aria-label="Voir le projet Noémie"></a>
+                    <div class="project-arrow">↗</div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PARCOURS -->
+    <section class="section" id="parcours" style="background: var(--bg-2);">
+        <div class="container">
+            <span class="eyebrow reveal">Parcours</span>
+            <h2 class="section-title reveal">Construire. <em>Apprendre.</em> Évoluer.</h2>
+
+            <div class="timeline">
+                <div class="timeline-item reveal">
+                    <div class="timeline-date">2026 — Aujourd'hui</div>
+                    <h3>MSc1 Marketing Digital & E-commerce — INSEEC Paris</h3>
+                    <p>Approfondissement du marketing digital, de l'e-commerce et des stratégies de communication.</p>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-date">2024 — 2025</div>
+                    <h3>Licence Professionnelle en Génie Logiciel — IUT de Douala</h3>
+                    <p>Expérience commerciale et développement web au contact de problématiques réelles.</p>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-date">2023 — 2024</div>
+                    <h3>Diplôme Universitaire de Technologie — IUT de Douala</h3>
+                    <p>Développement et évolution des techniques digitales modernes en entreprise.</p>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-date">2022 — 2023</div>
+                    <h3>Niveau 1 — IUT de Douala</h3>
+                    <p>Formation technique en informatique, développement et conception logicielle.</p>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-date">2021 — 2022</div>
+                    <h3>Baccalauréat A4 — Lycée Koundoumbain, Foumbot</h3>
+                    <p>Formation approfondie en littérature et sciences humaines.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section cta-section" id="contact">
+        <div class="container">
+            <div class="cta-box reveal">
+                <span class="eyebrow">Et maintenant ?</span>
+                <h2 class="section-title">Donnez une chance à une <em>bonne idée</em>.</h2>
+                <p>
+                    Vous êtes membre d'un jury, recruteur, entreprise ou porteur de projet ?
+                    Je serais ravi de présenter mes réalisations et d'échanger sur une opportunité.
+                </p>
+                <div class="hero-actions">
+                    <a href="mailto:jobtiofack1@gmail.com" class="btn btn-primary">
+                        jobtiofack1@gmail.com <span class="arrow">↗</span>
+                    </a>
+                    <a href="tel:+33745680720" class="btn btn-outline">
+                        +33 7 45 68 07 20
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="container footer-inner">
+        <div>© <span id="year"></span> Kenfack Tiofack Job — Tous droits réservés</div>
+        <div>Paris, France <span class="sep">·</span> Créativité × Technologie × Marketing</div>
+    </div>
+</footer>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Mobile menu
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    menuToggle.textContent = navLinks.classList.contains('open') ? '✕' : '☰';
+});
+navLinks.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuToggle.textContent = '☰';
+}));
+
+// Reveal
+const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            io.unobserve(e.target);
+        }
+    });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Année dynamique
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
