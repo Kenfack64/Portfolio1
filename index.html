@@ -698,6 +698,37 @@ img { max-width: 100%; display: block; }
     max-width: 640px;
 }
 
+
+.diplome-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+    padding: 11px 22px;
+    border-radius: 100px;
+    background: var(--ink);
+    color: var(--bg);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: all 0.3s var(--ease);
+}
+.diplome-btn::after {
+    content: '↗';
+    transition: transform 0.3s var(--ease);
+}
+.diplome-btn:hover {
+    background: var(--terracotta);
+    transform: translateY(-2px);
+}
+.diplome-btn:hover::after {
+    transform: translate(3px, -3px);
+}
+
+
+
+
 /* ============ CTA FINAL ============ */
 .cta-section { padding-bottom: 120px; }
 .cta-box {
@@ -1110,21 +1141,25 @@ footer {
                     <div class="timeline-date">2024 — 2025</div>
                     <h3>Licence Professionnelle en Génie Logiciel — IUT de Douala</h3>
                     <p>Expérience commerciale et développement web au contact de problématiques réelles.</p>
+                    <a href="Diplomes/Licence.pdf" target="_blank" class="diplome-btn">Voir le diplôme</a>
                 </div>
                 <div class="timeline-item reveal">
                     <div class="timeline-date">2023 — 2024</div>
                     <h3>Diplôme Universitaire de Technologie — IUT de Douala</h3>
                     <p>Développement et évolution des techniques digitales modernes en entreprise.</p>
+                    <a href="Diplomes/DUT.pdf" target="_blank" class="diplome-btn">Voir le diplôme</a>
                 </div>
                 <div class="timeline-item reveal">
                     <div class="timeline-date">2022 — 2023</div>
                     <h3>Niveau 1 — IUT de Douala</h3>
                     <p>Formation technique en informatique, développement et conception logicielle.</p>
+                    <a href="Diplomes/niveau1.pdf" target="_blank" class="diplome-btn">Voir le diplôme</a>
                 </div>
                 <div class="timeline-item reveal">
                     <div class="timeline-date">2021 — 2022</div>
                     <h3>Baccalauréat A4 — Lycée Koundoumbain, Foumbot</h3>
                     <p>Formation approfondie en littérature et sciences humaines.</p>
+                    <a href="Diplomes/BAC.pdf" target="_blank" class="diplome-btn">Voir le diplôme</a>
                 </div>
             </div>
         </div>
